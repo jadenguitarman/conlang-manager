@@ -82,7 +82,7 @@ const createLanguage = async ev => {
 			})
 		}
 	);
-	return (await response.json());
+	return await response.json();
 };
 
 exports.handler = async ev => {
@@ -96,7 +96,7 @@ exports.handler = async ev => {
 			results = await getLanguage(ev);
 			break;
 	}
-	
+
 	return {
 		statusCode: 200,
 		body: JSON.stringify(results)
