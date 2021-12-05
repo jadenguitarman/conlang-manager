@@ -4,20 +4,15 @@ import fetch from 'node-fetch';
 
 exports.handler = async function (event, context) {
 	const id = uuidv4();
-	const name = "Toki Pona";
-	const password = crypto.createHash("sha256").update("password").digest("hex");
-	const creatorName = "Sonja Lang";
-	const creatorEmail = "sonja@example.com";
-	const notes = JSON.stringify([
-		"Note 1",
-		"Note 2"
-	]);
-	const sentenceStructure = "SVO";
-	const syllableStructures = JSON.stringify([
-		"CVC",
-		"VC",
-		"CV"
-	]);
+	const {
+		name,
+		password,
+		creatorName,
+		creatorEmail,
+		notes,
+		sentenceStructure,
+		syllableStructures
+	} = JSON.parse(event.body);
 
 	const response = await fetch(
 		"https://graphql.us.fauna.com/graphql",
