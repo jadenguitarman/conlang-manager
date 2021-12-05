@@ -25,7 +25,7 @@
 
 	const getLanguage = async () => {
 		const response = await fetch(
-			"/api/language?name=Toki%20Pona&password=5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+			"/api/language?name=Toki+Pona&password=password"
 		);
 		const results = await response.json();
 		console.log(results);
