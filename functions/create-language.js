@@ -18,7 +18,7 @@ exports.handler = async function (event, context) {
 		"https://graphql.us.fauna.com/graphql",
 		{
 			headers: {
-				"Authorization": "Basic Zm5BRVpwSFBmT0FBUU1SVEFISXVicTdqSlpxQnBoWEJ2bktBbW5JYjpsYW5ndWFnZXM6YWRtaW4="
+				"Authorization": `Basic ${process.env.FAUNA_KEY}`
 			},
 			method: "POST",
 			body: JSON.stringify({
