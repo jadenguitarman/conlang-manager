@@ -87,7 +87,7 @@ const createLanguage = async ev => {
 
 exports.handler = async ev => {
 	let results;
-	switch (event.httpMethod) {
+	switch (ev.httpMethod) {
 		case "POST":
 			results = await createLanguage(ev);
 			break;
