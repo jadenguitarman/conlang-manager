@@ -82,7 +82,7 @@ const createLanguage = async ev => {
 			})
 		}
 	);
-	return await response.json();
+	return (await response.json());
 };
 
 exports.handler = async ev => {
