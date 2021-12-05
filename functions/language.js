@@ -2,11 +2,11 @@ import crypto from "crypto";
 import { v4 as uuidv4 } from 'uuid';
 import fetch from 'node-fetch';
 
-const getLanguage = async () => {
+const getLanguage = async ev => {
 	const {
 		name,
 		password
-	} = JSON.parse(event.queryStringParameters);
+	} = JSON.parse(ev.queryStringParameters);
 
 	const response = await fetch(
 		"https://graphql.us.fauna.com/graphql",
@@ -41,7 +41,7 @@ const getLanguage = async () => {
 	return await response.json();
 };
 
-const createLanguage = async () => {
+const createLanguage = async ev => {
 	const id = uuidv4();
 	const {
 		name,
@@ -51,7 +51,7 @@ const createLanguage = async () => {
 		notes,
 		sentenceStructure,
 		syllableStructures
-	} = JSON.parse(event.body);
+	} = JSON.parse(ev.body);
 
 	const response = await fetch(
 		"https://graphql.us.fauna.com/graphql",
