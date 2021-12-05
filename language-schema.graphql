@@ -1,0 +1,10 @@
+type Language {
+	id: String!
+	name: String!
+	password: String!
+	creatorName: String
+	creatorEmail: String
+	notes: [String]
+	sentenceStructure: String
+	syllableStructures: [String]
+}
