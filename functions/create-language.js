@@ -1,4 +1,4 @@
-import crypto from "crypto"
+import crypto from "crypto";
 import { v4 as uuidv4 } from 'uuid';
 import fetch from 'node-fetch';
 
@@ -28,7 +28,7 @@ exports.handler = async function (event, context) {
 							data: {
 								id: "${id}",
 								name: "${name}",
-								password: "${password}",
+								password: "${crypto.createHash("sha256").update(password).digest("hex")}",
 								creatorName: "${creatorName}",
 								creatorEmail: "${creatorEmail}",
 								notes: ${JSON.stringify(notes)}
