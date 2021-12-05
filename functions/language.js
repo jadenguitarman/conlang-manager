@@ -95,10 +95,10 @@ exports.handler = async ev => {
 		case "GET":
 			results = await getLanguage(ev);
 			break;
-
-		return {
-			statusCode: 200,
-			body: JSON.stringify(results)
-		};
 	}
+	
+	return {
+		statusCode: 200,
+		body: JSON.stringify(results)
+	};
 };
