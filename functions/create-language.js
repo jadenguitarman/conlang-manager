@@ -25,6 +25,7 @@ exports.handler = async function (event, context) {
 			headers: {
 				authentication: "Basic Zm5BRVpwSFBmT0FBUU1SVEFISXVicTdqSlpxQnBoWEJ2bktBbW5JYjpsYW5ndWFnZXM6YWRtaW4="
 			},
+			method: "POST",
 			body: JSON.stringify({
 				query: `
 					mutation CreateLanguage {
