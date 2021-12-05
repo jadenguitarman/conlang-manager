@@ -8,6 +8,11 @@ const getLanguage = async ev => {
 		password
 	} = JSON.parse(ev.queryStringParameters);
 
+	return {
+		name,
+		password
+	};
+
 	const response = await fetch(
 		"https://graphql.us.fauna.com/graphql",
 		{
