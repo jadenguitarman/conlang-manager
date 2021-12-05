@@ -31,9 +31,9 @@ exports.handler = async function (event, context) {
 								password: "${password}",
 								creatorName: "${creatorName}",
 								creatorEmail: "${creatorEmail}",
-								notes: ${notes}
+								notes: ${JSON.stringify(notes)}
 								sentenceStructure: "${sentenceStructure}"
-								syllableStructures: ${syllableStructures}
+								syllableStructures: ${JSON.stringify(syllableStructures)}
 							}
 						) {
 							id
