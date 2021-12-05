@@ -8,3 +8,7 @@ type Language {
 	sentenceStructure: String
 	syllableStructures: [String]
 }
+
+type Query {
+   languagesByCreds (name: String!, password: String!): [Language]
+}
