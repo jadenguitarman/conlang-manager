@@ -1,6 +1,6 @@
-const crypto = require("crypto");
-const { v4: uuidv4 } = require("uuid");
-const fetch = require("node-fetch");
+import crypto from "crypto"
+import { v4 as uuidv4 } from 'uuid';
+import fetch from 'node-fetch';
 
 exports.handler = async function (event, context) {
 	const id = uuidv4();
