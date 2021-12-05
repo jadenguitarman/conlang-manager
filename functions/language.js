@@ -85,15 +85,15 @@ const createLanguage = async () => {
 	return await response.json();
 };
 
-exports.handler = async function (event, context) {
+exports.handler = async ev => {
 	let results;
 	switch (event.httpMethod) {
 		case "POST":
-			results = await createLanguage();
+			results = await createLanguage(ev);
 			break;
 
 		case "GET":
-			results = await getLanguage();
+			results = await getLanguage(ev);
 			break;
 
 		return {
@@ -101,4 +101,4 @@ exports.handler = async function (event, context) {
 			body: JSON.stringify(results)
 		};
 	}
-}
+};
