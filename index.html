@@ -1,0 +1,22 @@
+<script>
+	const createLanguage = () => {
+		const response = await fetch("/api/create-language", {
+		    method: "POST",
+		    body: JSON.stringify({
+		        name: "Toki Pona",
+		        password: "password",
+		        creatorName: "Sonja Lang",
+		        creatorEmail: "sonja@example.com",
+		        notes: ["Note 1", "Note 2"],
+		        sentenceStructure: "SVO",
+		        syllableStructures: [
+		            "CVC",
+		            "VC",
+		            "CV"
+		        ]
+		    })
+		});
+		const results = await response.json();
+		console.log(results);
+	};
+</script>
