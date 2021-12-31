@@ -1,0 +1,11 @@
+type Language {
+	name: String!
+	dbName: String!
+	key: String!
+	creatorName: String!
+	creatorEmail: String!
+}
+
+type Query {
+	getLanguageByKey (key: String!): Language @index(name: "language_by_key")
+}
