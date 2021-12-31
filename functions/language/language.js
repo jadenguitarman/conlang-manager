@@ -1,12 +1,13 @@
 const { Client, query: q } = require('faunadb');
-//const fetch = require('cross-fetch');
+const fetch = require('cross-fetch');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 	// connect to fauna
 	const parentClient = new Client({
-		secret: process.env.FAUNADB_ADMIN_KEY
+		secret: process.env.FAUNADB_ADMIN_KEY,
+		domain: "db.us.fauna.com"
 	});
 
 
