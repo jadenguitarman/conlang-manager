@@ -4,9 +4,11 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 const createLanguage = async ({ name, creatorName, creatorEmail }) => {
+	console.log(process.env.FAUNA_ADMIN_KEY);
+
 	// connect to fauna
 	const parentClient = new Client({
-		secret: process.env.FAUNADB_ADMIN_KEY,
+		secret: process.env.FAUNA_ADMIN_KEY,
 		domain: "db.us.fauna.com"
 	});
 
