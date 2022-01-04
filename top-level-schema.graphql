@@ -7,5 +7,5 @@ type Language {
 }
 
 type Query {
-	getLanguageByKey (key: String!): Language @index(name: "language_by_key")
+	getLanguageByKey (key: String!): Language @index(name: "getLanguageByKey")
 }

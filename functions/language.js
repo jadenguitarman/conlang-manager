@@ -4,8 +4,6 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 const createLanguage = async ({ name, creatorName, creatorEmail }) => {
-	console.log(process.env.FAUNA_ADMIN_KEY);
-
 	// connect to fauna
 	const parentClient = new Client({
 		secret: process.env.FAUNA_ADMIN_KEY,
@@ -36,8 +34,65 @@ const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 	// add GraphQL schema to child database
 	await fetch(`https://graphql.us.fauna.com/graphql`, {
 		method: "post",
-		body: fs.readFileSync('language-schema.graphql')
+		body: `
+			type Phoneme {
+				id: String!
+				manner: String
+				place: String
+				roundedness: String
+				height: String
+				phonation: String
+				notes: String
+				ipa: String
+				symbols: [Symbol] @relation
+			}
+
+			type Symbol {
+				svg: String
+				phonemes: [Phoneme] @relation
+			}
+
+			type PhonotacticRule {
+				allowed: Boolean!
+				construction: String!
+			}
+
+			type Conjugation {
+				name: String!
+				rootWord: Word!
+				conjugatedWord: String
+			}
+
+			type Word {
+				root: String!
+				partOfSpeech: String!
+				conjugations: [Conjugation]
+			}
+
+			type Metadata {
+				sentenceStructure: [String]!
+				syllableStructure: [String]!
+			}
+
+			type Note {
+				note: String
+			}
+
+			type Query {
+				phonemes: [Phoneme]
+				symbols: [Symbol]
+				phonotacticRules: [PhonotacticRule]
+				conjugations: [Conjugation]
+				words: [Word]
+				metadata: Metadata
+				notes: [Note]
+			}
+		`,
+		headers: {
+			"Authentication": "Bearer " + adminChildKey
+		}
 	});
+	console.log(2)
 
 
 	// step 3
@@ -46,8 +101,10 @@ const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 		secret: adminChildKey
 	});
 
+	console.log(adminChildKey)
+
 	// create a role with specific privileges
-	childClient.query(
+	await childClient.query(
 		q.CreateRole({
 			name: 'public',
 			privileges: [
@@ -69,6 +126,7 @@ const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 			}))
 		})
 	);
+	console.log(3)
 
 
 	// step 4
@@ -81,6 +139,7 @@ const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 			})
 		)
 	).secret;
+	console.log(4)
 
 
 	// step 5
@@ -99,6 +158,7 @@ const createLanguage = async ({ name, creatorName, creatorEmail }) => {
 			}
 		)
 	);
+	console.log(5)
 
 	return JSON.stringify({ key: publicChildKey });
 };
